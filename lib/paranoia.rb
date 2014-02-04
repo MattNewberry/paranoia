@@ -89,9 +89,9 @@ module Paranoia
   # @param with_transaction [Boolean] exec with ActiveRecord Transactions.
   def touch_paranoia_column(with_transaction=false)
     if with_transaction
-      with_transaction_returning_status { touch(paranoia_column) }
+      with_transaction_returning_status { update_attribute(paranoia_column, Time.now) }
     else
-      touch(paranoia_column)
+      update_attribute(paranoia_column, Time.now)
     end
   end
 
